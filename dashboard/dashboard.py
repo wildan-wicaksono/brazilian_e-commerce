@@ -99,7 +99,7 @@ st.subheader('Best and Worst Product Categories by Number of Purchases')
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35,15))
 colors =  ["#72BCD4", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 
-sns.barplot(y="recency", x="customer_id_short", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette=colors, ax=ax[0]).set_ylim(bottom=0)
+sns.barplot(y="recency", x="customer_id_short", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette=colors, ax=ax[0])
 ax[0].set_ylabel(None)
 ax[0].set_xlabel("customer_id (last five digits)", fontsize=30)
 ax[0].set_title("By Recency (days)", loc="center", fontsize=50)
@@ -136,7 +136,7 @@ colors = ["#90CAF9", "#90CAF9", "#90CAF9", "#90CAF9", "#90CAF9"]
 
 #print(rfm_df.sort_values(by="recency", ascending=True).head(5))
 
-sns.barplot(y="recency", x="customer_id_short", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette=colors, ax=ax[0])
+sns.barplot(y="recency", x="customer_id_short", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette=colors, ax=ax[0]).set_ylim(bottom=0)
 ax[0].set_ylabel(None)
 ax[0].set_xlabel("customer_id (last five digits)", fontsize=30)
 ax[0].set_title("By Recency (days)", loc="center", fontsize=50)
