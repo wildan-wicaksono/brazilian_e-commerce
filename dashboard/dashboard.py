@@ -46,7 +46,7 @@ def create_rfm_df(df):
 
     return rfm_df 
 
-all_df = pd.read_csv('all_data_proyek.csv')
+all_df = pd.read_csv('https://raw.githubusercontent.com/wildan-wicaksono/brazilian_e-commerce/refs/heads/main/dashboard/all_data_proyek.csv')
 
 all_df['order_purchase_timestamp'] = pd.to_datetime(all_df['order_purchase_timestamp'])
 print(all_df.info())
