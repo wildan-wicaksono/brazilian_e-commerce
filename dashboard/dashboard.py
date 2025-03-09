@@ -99,12 +99,12 @@ st.subheader('Best and Worst Product Categories by Number of Purchases')
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35,15))
 colors =  ["#72BCD4", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 
-sns.barplot(y="recency", x="customer_id_short", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette=colors, ax=ax[0])
+sns.barplot(x='order_item_id', y='product_category_name_english', data=sum_order_items_df.head(5), palette=colors, ax=ax[0])
 ax[0].set_ylabel(None)
-ax[0].set_xlabel("customer_id (last five digits)", fontsize=30)
-ax[0].set_title("By Recency (days)", loc="center", fontsize=50)
-ax[0].tick_params(axis='y', labelsize=30)
-ax[0].tick_params(axis='x', labelsize=30, rotation=45)
+ax[0].set_xlabel(None)
+ax[0].set_title("Best Product Categories", loc="center", fontsize=50)
+ax[0].tick_params(axis ='y', labelsize=35)
+ax[0].tick_params(axis='x', labelsize=30)
 
 sns.barplot(x="order_item_id", y="product_category_name_english", data=sum_order_items_df.sort_values(by="order_item_id", ascending=True).head(5), palette=colors, ax=ax[1])
 ax[1].set_ylabel(None)
