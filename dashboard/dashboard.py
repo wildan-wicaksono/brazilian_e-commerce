@@ -71,7 +71,7 @@ sum_order_items_df = create_sum_order_items_df(main_df)
 rfm_df = create_rfm_df(main_df)
 print(rfm_df)
 
-st.header('Olist Cllection Dashboard')
+st.header('Olist Collection Dashboard')
 st.subheader('Daily Orders')
 
 col1, col2 = st.columns(2) 
@@ -107,6 +107,16 @@ with tab2:
     ax.tick_params(axis='y', labelsize=20)
     ax.tick_params(axis='x', labelsize=15)
     st.pyplot(fig)
+st.markdown(
+    """
+**Insight:**
+
+Pemesanan harian pada tahun 2016 sangat rendah, namun sempat menaik pada awal bulan Oktober dan mulai menurun saat memasuki pertengahan Oktober. 
+Pada tahun 2016 penjualan harian mulai relatif menaik dan puncaknya terjadi pada bulan November secara signifikan dan turun kembali secara signifikan.
+Pada tahun 2017 pemesanan yang dilakukan relatif konsisten, namun pada bulan Agustus mulai terjadi penurunan. Pola yang serupa untuk pendapatan harian.
+    """
+)
+
 
 st.subheader('Best and Worst Product Categories by Number of Purchases')
 
