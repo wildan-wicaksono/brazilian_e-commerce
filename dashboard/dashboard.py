@@ -71,18 +71,18 @@ sum_order_items_df = create_sum_order_items_df(main_df)
 rfm_df = create_rfm_df(main_df)
 print(rfm_df)
 
-st.header('Olist Collection Dashboard')
-st.subheader('Daily Orders')
+st.header('Analisis E-Commerce Olist')
+st.subheader('Pesanan Harian dan Total Pendapatan')
 
 col1, col2 = st.columns(2) 
 with col1:
     total_orders = daily_orders_df.order_count.sum()
-    st.metric('Total orders', value=total_orders)
+    st.metric('Total Pesanan', value=total_orders)
 with col2:
     total_revenue = format_currency(daily_orders_df.revenue.sum(), 'BRL', locale='es_CO')
-    st.metric('Total Revenue', value=total_revenue)
+    st.metric('Total Pendapatan', value=total_revenue)
 
-tab1, tab2 = st.tabs(['Daily Orders', 'Daily Revenues'])
+tab1, tab2 = st.tabs(['Pesanan Harian', 'Pendapatan Harian'])
 with tab1:
     fig, ax = plt.subplots(figsize=(16,8))
     ax.plot(
@@ -118,29 +118,36 @@ Pada tahun 2017 pemesanan yang dilakukan relatif konsisten, namun pada bulan Agu
 )
 
 
-st.subheader('Best and Worst Product Categories by Number of Purchases')
+st.subheader('Pemesanan dan Kategori Produk')
 
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35,15))
 colors =  ["#72BCD4", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 
-sns.barplot(x='order_item_id', y='product_category_name_english', data=sum_order_items_df.head(5), palette=colors, ax=ax[0])
-ax[0].set_ylabel(None)
-ax[0].set_xlabel(None)
-ax[0].set_title("Best Product Categories", loc="center", fontsize=50)
-ax[0].tick_params(axis ='y', labelsize=35)
-ax[0].tick_params(axis='x', labelsize=30)
-
-sns.barplot(x="order_item_id", y="product_category_name_english", data=sum_order_items_df.sort_values(by="order_item_id", ascending=True).head(5), palette=colors, ax=ax[1])
-ax[1].set_ylabel(None)
-ax[1].set_xlabel(None)
-ax[1].invert_xaxis()
-ax[1].yaxis.set_label_position("right")
-ax[1].yaxis.tick_right()
-ax[1].set_title("Worst Product Categories", loc="center", fontsize=50)
-ax[1].tick_params(axis='y', labelsize=35)
-ax[1].tick_params(axis='x', labelsize=30)
-
-st.pyplot(fig)
+tab1, tab2 = st.tabs(['Banyak Pesanan', 'Skor Review'])
+with tab1:
+    sns.barplot(x='order_item_id', y='product_category_name_english', data=sum_order_items_df.head(5), palette=colors, ax=ax[0])
+    ax[0].set_ylabel(None)
+    ax[0].set_xlabel(None)
+    ax[0].set_title("Kategori Produk Terbaik", loc="center", fontsize=50)
+    ax[0].tick_params(axis ='y', labelsize=35)
+    ax[0].tick_params(axis='x', labelsize=30)
+    
+    sns.barplot(x="order_item_id", y="product_category_name_english", data=sum_order_items_df.sort_values(by="order_item_id", ascending=True).head(5), palette=colors, ax=ax[1])
+    ax[1].set_ylabel(None)
+    ax[1].set_xlabel(None)
+    ax[1].invert_xaxis()
+    ax[1].yaxis.set_label_position("right")
+    ax[1].yaxis.tick_right()
+    ax[1].set_title("Kategori Produk Terburuk", loc="center", fontsize=50)
+    ax[1].tick_params(axis='y', labelsize=35)
+    ax[1].tick_params(axis='x', labelsize=30)
+    
+    st.suptitle('Berdasarkan Banyak Pembelian')
+    
+    st.pyplot(fig)
+with tab2:
+    ### LANJUT SINI
+    
 st.subheader('Best Customer Based on RFM Parameters')
 
 col1, col2, col3 = st.columns(3)
