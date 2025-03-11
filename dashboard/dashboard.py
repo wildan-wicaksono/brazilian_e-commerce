@@ -40,7 +40,7 @@ def create_rfm_df(df):
     
     rfm_df['max_order_timestamp'] = rfm_df['max_order_timestamp'].dt.date
     recent_date = df['order_purchase_timestamp'].dt.date.max()
-    rfm_df['recency'] = rfm_df['max_order_timestamp'].apply(lambda x: (recent_date-x).days/30)
+    rfm_df['recency'] = rfm_df['max_order_timestamp'].apply(lambda x: (recent_date-x).days)
     rfm_df.drop('max_order_timestamp', axis=1, inplace=True)
     rfm_df['customer_id_short'] = '...' + rfm_df['customer_id'].astype(str).str[-5:] # lima digit terakhir
 
