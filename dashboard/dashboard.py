@@ -63,8 +63,8 @@ with st.sidebar:
     value=[min_date, max_date]
     )
 
-main_df = all_df[(all_df['order_purchase_timestamp'] >= str(start_date))
-                 & (all_df['order_purchase_timestamp'] <= str(end_date))]
+main_df = all_df[(all_df['order_purchase_timestamp'].dt.date >= (start_date))
+                 & (all_df['order_purchase_timestamp'].dt.date <= (end_date))]
 
 daily_orders_df = create_daily_orders_df(main_df)
 sum_order_items_df = create_sum_order_items_df(main_df)
