@@ -82,7 +82,7 @@ with col2:
     total_revenue = format_currency(daily_orders_df.revenue.sum(), 'BRL', locale='es_CO')
     st.metric('Total Revenue', value=total_revenue)
 
-tab1, tab2 = st.tabs('Daily Orders', 'Daily Revenues')
+tab1, tab2 = st.tabs(['Daily Orders', 'Daily Revenues'])
 with tab1:
     fig, ax = plt.subplots(figsize=(16,8))
     ax.plot(
